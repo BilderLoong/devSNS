@@ -5,6 +5,9 @@ const app = express();
 
 connectDB();
 
+//Init Middleware
+app.use(express.json());
+
 app.get('/', (req, res) => res.send('API Running'));
 
 //Define Routes
@@ -13,6 +16,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 
+// To read doc regard to process
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
