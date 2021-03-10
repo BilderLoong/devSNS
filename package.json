@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "commit":"git commit -am"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
