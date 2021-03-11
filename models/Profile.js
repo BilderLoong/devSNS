@@ -16,11 +16,11 @@ const ProfileSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    required: false,
+    required: true,
   },
   skills: {
     type: [String],
-    required: false,
+    required: true,
   },
   bio: {
     type: String,
@@ -32,18 +32,18 @@ const ProfileSchema = new mongoose.Schema({
     {
       title: {
         type: String,
-        required: false,
+        required: true,
       },
       company: {
         type: String,
-        required: false,
+        required: true,
       },
       location: {
         type: String,
       },
       from: {
         type: Date,
-        required: false,
+        required: true,
       },
       to: {
         type: Date,
@@ -61,19 +61,19 @@ const ProfileSchema = new mongoose.Schema({
     {
       school: {
         type: String,
-        required: false,
+        required: true,
       },
       degree: {
         type: String,
-        required: false,
+        required: true,
       },
       fieldofstudy: {
         type: String,
-        required: false,
+        required: true,
       },
       from: {
         type: Date,
-        required: false,
+        required: true,
       },
       to: {
         type: Date,
@@ -110,4 +110,4 @@ const ProfileSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('profile', ProfileSchema);
+module.exports = Profile = mongoose.model('profile', ProfileSchema);

@@ -45,27 +45,39 @@ router.post(
 
     // destructure the request
     const {
+      company,
       website,
+      location,
+      bio,
+      status,
+      githubusername,
       skills,
       youtube,
+      facebook,
       twitter,
       instagram,
       linkedin,
-      facebook,
-      company,
-      // spread the rest of the fields we don't need to check
     } = req.body;
 
     //Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
+    if (website) profileFields.website = website;
+    if (location) profileFields.location = location;
+    if (bio) profileFields.bio = bio;
+    if (status) profileFields.status = status;
+    if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
       //Get the array of skill
       profileFields.skills = skills.split(/\s*,\s*/);
     }
     profileFields.social = {};
     if (youtube) profileFields.social.youtube = youtube;
+    if (twitter) profileFields.social.twitter = twitter;
+    if (facebook) profileFields.social.facebook = facebook;
+    if (linkedin) profileFields.social.linkedin = linkedin;
+    if (instagram) profileFields.social.instagram = instagram;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -73,7 +85,7 @@ router.post(
         // Update existed profile
         profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
-          { $set: profileFields },
+          profileFields,
           { new: true }
         );
 
@@ -90,5 +102,13 @@ router.post(
     }
   }
 );
+
+// @route   POST api/profile/me
+// @decs    Get all profiles
+// @ access Public
+// router.get('/', async () => {
+//   try {
+//   } catch (err) {}
+// });
 
 module.exports = router;
