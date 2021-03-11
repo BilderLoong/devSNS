@@ -151,7 +151,9 @@ router.delete('/', auth, async (req, res) => {
 
     res.json({ msg: 'User deleted' });
   } catch (err) {
-    console.error(err);
+     if (err.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Profile not found' });
+    }   console.error(err);
     res.status(500).send('Server Error');
   }
 });
