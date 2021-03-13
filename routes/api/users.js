@@ -9,7 +9,7 @@ const router = express.Router();
 const User = require('../../models/User');
 
 // @route   POST api/users
-// @decs    Register route
+// @decs    Register user
 // @access  Public
 router.post(
   '/',
@@ -26,7 +26,9 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
     const { name, email, password } = req.body;
+
     try {
       // Check if user exists
       let user = await User.findOne({ email });
