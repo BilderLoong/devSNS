@@ -9,8 +9,8 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 // @route   GET api/auth
-// @decs    Test route
-// @ access Public
+// @decs    Check if user authenticated
+// @access  Public
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
