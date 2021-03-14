@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
+// Using Hook instead of connect()
 const Register = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
