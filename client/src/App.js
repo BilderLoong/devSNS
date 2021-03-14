@@ -7,15 +7,20 @@ import Login from './components/auth/Login';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './store';
+import Alert from './components/layout/Alert';
 
 const App = () => {
   return (
-    <Provider>
+    <Provider store={store}>
       <Router>
         <Fragment>
           <Navbar />
           <Route exact path='/' component={Landing} />
           <section className='container'>
+            {/* Router without path props will always match, so the Alert
+            component needed to put outside of the Switch.
+            https://reactrouter.com/web/api/Route/path-string-string*/}
+            <Alert />
             <Switch>
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
