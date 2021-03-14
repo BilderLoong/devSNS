@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from 'react';
 // import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
 // Using Hook instead of connect()
 const Register = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: '',
@@ -26,6 +27,10 @@ const Register = () => {
       dispatch(register({ name, email, password }));
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
