@@ -14,7 +14,7 @@ const User = require('../../models/User');
 router.post(
   '/',
   [
-    check('name', 'Name if required').not().isEmpty(),
+    check('name', 'Name is required').not().isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
     check(
       'password',
@@ -78,7 +78,7 @@ router.post(
       );
     } catch (err) {
       console.error(err.message);
-      res.send('Server error');
+      res.status(500).send('Server error');
     }
   }
 );
