@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -21,23 +22,7 @@ const Register = () => {
     if (password !== password2) {
       dispatch(setAlert('Password do not match', 'danger'));
     } else {
-      // const newUser = {
-      //   name,
-      //   email,
-      //   password,
-      // };
-      // try {
-      //   const config = {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //   };
-      //   const body = JSON.stringify(newUser);
-      //   const res = await axios.post('/api/user',body,config);
-      //   console.log(res.data);
-      // } catch (err) {
-      //   console.error(err);
-      // }
+      dispatch(register({ name, email, password }));
     }
   };
 
@@ -53,9 +38,9 @@ const Register = () => {
             type='text'
             placeholder='Name'
             name='name'
-            required
             value={name}
             onChange={(e) => onChange(e)}
+            required
           />
         </div>
         <div className='form-group'>
