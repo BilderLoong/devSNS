@@ -6,6 +6,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
+import CreateProfile from './components/profile-forms/CreateProfile';
 import './App.css';
 // Redux
 import { Provider } from 'react-redux';
@@ -44,6 +45,11 @@ const App = () => {
               {/* Using Route component props to provide component will cause every time re-render
               the component will unmount then mount instead of just updating the component  */}
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute
+                exact
+                path='/create-profile'
+                component={CreateProfile}
+              />
               <Route exact path='/login' render={() => <Login />} />
             </Switch>
           </section>
