@@ -2,9 +2,11 @@ const express = require('express');
 const request = require('request');
 const config = require('config');
 const router = express.Router();
-const auth = require('../../middleware/auth.js');
 const { check, validationResult } = require('express-validator');
 
+const auth = require('../../middleware/auth.js');
+
+const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
@@ -146,14 +148,16 @@ router.get('/user/:user_id', async (req, res) => {
 // @ access Public
 router.delete('/', auth, async (req, res) => {
   try {
+    await Post.deleteMany({ user: req.user.id });
     await Profile.findOneAndRemove({ user: req.user.id });
     await User.findOneAndRemove({ _id: req.user.id });
 
     res.json({ msg: 'User deleted' });
   } catch (err) {
-     if (err.kind == 'ObjectId') {
+    if (err.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'Profile not found' });
-    }   console.error(err);
+    }
+    console.error(err);
     res.status(500).send('Server Error');
   }
 });
