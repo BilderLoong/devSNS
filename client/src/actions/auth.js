@@ -9,6 +9,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE,
+  SERVER_ERROR,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -24,9 +25,14 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    dispatch({
-      type: AUTH_ERROR,
-    });
+    if (err.response.status === 500) {
+      setAlert(err.response.data, 'danger');
+      dispatch({ type: SERVER_ERROR });
+    } else {
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    }
   }
 };
 
@@ -72,11 +78,14 @@ export const login = ({ email, password }) => async (dispatch) => {
     // Immediately load user
     dispatch(loadUser());
   } catch (err) {
-    //Fail to  consider the server error, server just a string not a object
-    const errors = err.response.data.errors;
-    if (errors)
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    dispatch({ type: LOGIN_FAIL });
+    if (err.response.status === 500) {
+      setAlert(err.response.data, 'danger');
+    } else {
+      const errors = err.response.data.errors;
+      if (errors)
+        errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      dispatch({ type: LOGIN_FAIL });
+    }
   }
 };
 

@@ -6,6 +6,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
+  SERVER_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -43,6 +44,14 @@ export default function (state = initialState, action) {
         ...state,
         token: null,
         isAuthenticated: false,
+        loading: false,
+      };
+
+    //Only for development
+    case SERVER_ERROR:
+      return {
+        ...state,
+        isAuthenticated: true,
         loading: false,
       };
     default:
