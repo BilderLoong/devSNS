@@ -536,14 +536,15 @@ button {
     text-align: center;
   }
 
-  .profile ul {
+  /* .profile ul {
     display: none;
-  }
+  } */
 
   /* Profile Page */
 
   .profile-top img,
-  .profile img {
+  .profile img ,
+  .profile object{
     width: 200px;
     margin: auto;
   }
