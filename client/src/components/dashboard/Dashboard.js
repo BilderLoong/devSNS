@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import DashboardActions from './DashboardActions';
 import Spinner from '../layout/Spinner';
+import Education from './Education';
+import Experience from './Experience';
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
@@ -25,6 +27,8 @@ const Dashboard = () => {
       {profile !== null ? (
         <Fragment>
           <DashboardActions></DashboardActions>
+          <Experience experience={profile.experience} />
+          <Education education={profile.education} />
         </Fragment>
       ) : (
         <Fragment>
