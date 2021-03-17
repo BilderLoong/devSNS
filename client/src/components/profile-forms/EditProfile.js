@@ -1,12 +1,19 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 import PropTypes from 'prop-types';
 
 const EditProfile = ({ profile: { profile, loading } }) => {
+  // console.log('mark'); // Why this line will be executed multiple times?
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // To count the render time, can't understand the weird render time.
+  // const renderCounter = useRef(0);
+
+  // renderCounter.current += 1;
+  // console.log(renderCounter.current);
 
   const [formData, setFormData] = useState({
     company: '',
@@ -24,8 +31,12 @@ const EditProfile = ({ profile: { profile, loading } }) => {
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+  // Using two useEffect reduce one time of dispatch(getCurrentProfile())
   useEffect(() => {
     dispatch(getCurrentProfile());
+  }, []);
+
+  useEffect(() => {
     setFormData({
       company: loading || !profile.company ? '' : profile.company,
       website: loading || !profile.website ? '' : profile.website,
@@ -41,7 +52,7 @@ const EditProfile = ({ profile: { profile, loading } }) => {
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram,
     });
-  }, [dispatch, loading, profile]);
+  }, [loading]);
 
   const {
     company,
