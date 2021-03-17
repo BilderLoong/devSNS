@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
@@ -34,7 +34,7 @@ const EditProfile = ({ profile: { profile, loading } }) => {
   // Using two useEffect reduce one time of dispatch(getCurrentProfile())
   useEffect(() => {
     dispatch(getCurrentProfile());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setFormData({
