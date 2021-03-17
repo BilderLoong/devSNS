@@ -10,7 +10,7 @@ const ProfileGithub = ({ username }) => {
 
   useEffect(() => {
     dispatch(getGithubRepos(username));
-  }, [dispatch]);
+  }, [dispatch, username]);
   return (
     <div className='profile-github'>
       <h2 className='text-primary my-1'>Github Repos</h2>
