@@ -16,7 +16,7 @@ const ProfileItem = ({
     <div className='profile bg-light'>
       <object data={avatar} className='round-img'>
         Can't get avatar
-        <img src={fallbackImage} alt='avatar image' className='round-img' />
+        <img src={fallbackImage} alt='avatar' className='round-img' />
       </object>
       <div>
         <h2>{name}</h2>
