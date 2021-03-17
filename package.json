@@ -11,7 +11,7 @@
     "dev": "concurrently -k \"npm:server\" \"npm:client\"",
     "commit": "git commit -am",
     "push": "git push github master",
-    "heroku-postbuild": "yarn install --prefix client && yarn build --prefix client"
+    "heroku-postbuild": "yarn --cwd client install  && yarn --cwd client build "
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
