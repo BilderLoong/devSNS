@@ -2,7 +2,9 @@ import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfileById } from '../../actions/profile';
 import { useParams, Link } from 'react-router-dom';
+import ProfileTop from './ProfileTop';
 import Spinner from '../layout/Spinner';
+import ProfileAbout from './ProfileAbout';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,11 @@ const Profile = () => {
                 Edit Profile
               </Link>
             )}
+
+          <div className='profile-grid my-1'>
+            <ProfileTop profile={profile} />
+            <ProfileAbout profile={profile} />
+          </div>
         </Fragment>
       )}
     </Fragment>
