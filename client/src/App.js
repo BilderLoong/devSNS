@@ -12,6 +12,7 @@ import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -48,9 +49,12 @@ const App = () => {
                 <Register />
               </Route>
               <Route exact path='/login' render={() => <Login />} />
-              <Router exact path='/profiles'>
+              <Route exact path='/profiles'>
                 <Profiles />
-              </Router>
+              </Route>
+              <Route exact path='/profile/:id'>
+                <Profile />
+              </Route>
               {/* Using Route component props to provide component will cause every time re-render
               the component will unmount then mount instead of just updating the component  */}
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
