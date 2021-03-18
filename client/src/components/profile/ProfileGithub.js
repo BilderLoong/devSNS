@@ -6,17 +6,19 @@ import { getGithubRepos } from '../../actions/profile';
 
 const ProfileGithub = ({ username }) => {
   const repos = useSelector((state) => state.profile.repos);
+  const error = useSelector((state) => state.profile.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getGithubRepos(username));
   }, [dispatch, username]);
+
   return (
     <div className='profile-github'>
       <h2 className='text-primary my-1'>Github Repos</h2>
-      {repos === null ? (
+      {repos === null && error === null ? (
         <Spinner />
-      ) : (
+      ) : !error ? (
         repos.map((repo) => (
           <div key={repo._id} className='repo bg-white p-1 my-1'>
             <div>
@@ -44,6 +46,10 @@ const ProfileGithub = ({ username }) => {
             </div>
           </div>
         ))
+      ) : (
+        <span>
+          {error.data.msg} for {username}
+        </span>
       )}
     </div>
   );

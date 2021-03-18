@@ -10,9 +10,9 @@ import {
 const initialState = {
   profile: null,
   profiles: [],
-  repos: [],
+  repos: null,
   loading: true,
-  error: {},
+  error: null,
 };
 
 export default (state = initialState, action) => {
@@ -21,16 +21,22 @@ export default (state = initialState, action) => {
   switch (type) {
     case GET_PROFILE:
     case UPDATE_PROFILE:
-      return { ...state, profile: payload, loading: false, error: {} };
+      return { ...state, profile: payload, loading: false, error: null };
     case GET_PROFILES:
-      return { ...state, loading: false, profiles: payload, error: {} };
+      return { ...state, loading: false, profiles: payload, error: null };
     case PROFILE_ERROR:
-      return { ...state, error: payload, loading: false, profile: null };
+      return { ...state, error: payload, loading: false };
     case CLEAR_PROFILE:
-      return { ...state, profile: null, repos: [], loading: false, error: {} };
+      return {
+        ...state,
+        profile: null,
+        repos: null,
+        loading: false,
+        error: null,
+      };
 
     case GET_REPOS:
-      return { ...state, repos: payload, loading: false };
+      return { ...state, repos: payload, loading: false, error: null };
     default:
       return state;
   }
