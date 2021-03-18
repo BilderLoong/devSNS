@@ -17,6 +17,7 @@ export const getCurrentProfile = () => async (dispatch) => {
     const res = await axios.get('/api/profile/me');
     dispatch({ type: GET_PROFILE, payload: res.data });
   } catch (err) {
+    dispatch({ type: CLEAR_PROFILE });
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -59,9 +60,14 @@ export const getGithubRepos = (username) => async (dispatch) => {
 
     dispatch({ type: GET_REPOS, payload: res.data });
   } catch (err) {
+    console.log('error:', err.response);
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status,
+        data: err.response.data,
+      },
     });
   }
 };
