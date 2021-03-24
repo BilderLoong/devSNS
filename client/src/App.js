@@ -20,7 +20,7 @@ import Alert from './components/layout/Alert';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
-import './App.css';
+import './style/App.scss';
 
 if (localStorage.getItem('token')) {
   setAuthToken(localStorage.getItem('token'));
