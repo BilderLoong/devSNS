@@ -11,6 +11,7 @@
     "dev": "concurrently -k \"npm:server\" \"npm:client\"",
     "commit": "git commit -am",
     "push": "git push github master",
+    "deploy":"git push heroku master",
     "heroku-postbuild": "yarn --cwd client install  && yarn --cwd client build "
   },
   "dependencies": {
