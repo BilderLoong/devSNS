@@ -25,6 +25,14 @@
   margin-bottom: 1rem;
 }
 
+.img-fallback {
+  text-align: center;
+
+  img {
+    clip-path: circle();
+  }
+}
+
 .round-img {
   border-radius: 50%;
 }

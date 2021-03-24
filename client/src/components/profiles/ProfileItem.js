@@ -15,8 +15,14 @@ const ProfileItem = ({
   return (
     <div className='profile bg-light'>
       <object data={avatar} className='round-img'>
-        Can't get avatar
-        <img src={fallbackImage} alt='avatar' className='round-img' />
+        <div className='img-fallback'>
+          <small>Can't get you avatar.</small>
+          <img
+            src={fallbackImage}
+            alt='fallback avatar'
+            className='round-img'
+          />
+        </div>
       </object>
       <div>
         <h2>{name}</h2>
