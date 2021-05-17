@@ -6,4 +6,4 @@ This is social network for developer.
 
 ## Developing
 
-``` yarn dev```
+```yarn dev```
